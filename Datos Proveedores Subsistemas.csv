@@ -1,0 +1,12 @@
+﻿Componente;Nombre;Masa;Costo;Volumen;1U;3U;6U
+Bus;ISISPACE;700;40000;0.4;yes;no;no
+Bus;ISISPACE;2000;80000;2;no;yes;no
+Bus;ISISPACE;6000;120000;3;no;no;yes
+EPS;ISISPACE;365;9093;140870;yes;yes;yes
+Bus;OrbAstro;4000;78415;2;no;yes;no
+Bus;OrbAstro;8500;114608;5;no;no;yes
+EPS;OrbAstro;1100;14477;700000;no;yes;yes
+Bus;Endurosat;1150;37200;1;yes;no;no
+Bus;Endurosat;3600;114000;2;no;yes;no
+Bus;Endurosat;7800;168000;4;no;no;yes
+EPS;Endurosat;283;5100;184913;yes;yes;yes
