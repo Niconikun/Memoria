@@ -168,9 +168,8 @@ def no_phase(EPS_red, ctd_sat_min, ctd_sat_ini, Mission_time):
     return x, R_sys, masa, volumen, costo
 
 
-def Reliability(EPS_red, ctd_sat_min, ctd_sat_ini, ctd_sat_rel, tasa_gen):
+def Reliability(EPS_red, ctd_sat_min, ctd_sat_ini, ctd_sat_rel, tasa_gen, Mission_time):
 
-    Mission_time = 7
     year_to_day = 365
     x = np.linspace(0, Mission_time, Mission_time * year_to_day)
 

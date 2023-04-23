@@ -32,7 +32,6 @@ while ciclo_et != 'n' or ciclo_et != 'N':
     EPS_red = ''
     b_inicio = ''
     a_inicio = ''
-    Mission_time = 7
 
     while EPS_red != 'y' or EPS_red != 'Y' or EPS_red != 'n' or EPS_red != 'N':
         EPS_red = input('EPS posee redundancia? (y/n): ')
@@ -49,6 +48,9 @@ while ciclo_et != 'n' or ciclo_et != 'N':
                             'número: '))
     print('----------------------------------------------------------')
     ctd_sat_ini = int(input('¿Cuál es la cantidad de satélites a comenzar? Ingrese un número: '))
+    print('----------------------------------------------------------')
+
+    Mission_time = int(input('¿Cuánto dura la misión? Ingrese un número: '))
     print('----------------------------------------------------------')
 
     while a_inicio != 'y' or a_inicio != 'Y' or a_inicio != 'n' or a_inicio != 'N':
@@ -68,7 +70,7 @@ while ciclo_et != 'n' or ciclo_et != 'N':
             print('----------------------------------------------------------')
             from Reliability import Reliability
 
-            x, R_sys, masa_d, volumen_d, costo_d = Reliability(EPS_red, ctd_sat_min, ctd_sat_ini, ctd_sat_rel, tasa_gen)
+            x, R_sys, masa_d, volumen_d, costo_d = Reliability(EPS_red, ctd_sat_min, ctd_sat_ini, ctd_sat_rel, tasa_gen, Mission_time)
             break
     ciclo_et = input('¿Quieres realizar otra configuración? (y/n): ')
     if ciclo_et == 'n' or ciclo_et == 'N':
