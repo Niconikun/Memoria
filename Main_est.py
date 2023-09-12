@@ -3,19 +3,15 @@ from mpl_toolkits.mplot3d import Axes3D
 from csv import writer
 import valispace
 
-print('Bienvenido de nuevo')
-print('Programa creado por: Nicolás Sepúlveda')
-print('Para Memoria de Título')
-print('--------------------------------------')
-print()
-print()
-print('--------------------------------------------------------------------------------')
+valispace = valispace.API()
+
 R_tot = []
 masa = []
 volumen = []
 costo = []
 ciclo_et = ''
 label = []
+
 while ciclo_et != 'n' or ciclo_et != 'N':
 
     EPS_red = ''
