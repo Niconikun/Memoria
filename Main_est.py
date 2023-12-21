@@ -1,9 +1,6 @@
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from csv import writer
-import valispace
-
-valispace = valispace.API()
 
 R_tot = []
 masa = []
@@ -112,3 +109,27 @@ for count in range(len(masa)):
 
 fig.legend()
 plt.show()
+
+# ESTA PARTE HA DE SER EDITADA
+
+
+def save_data_to_txt(data, filename="data.txt"):
+    """Saves the given data to a .txt file."""
+    with open(filename, "w") as file:
+        file.write(data)
+
+def read_data_from_txt(filename="data.txt"):
+    """Reads data from a .txt file and returns it as a string."""
+    with open(filename, "r") as file:
+        data = file.read()
+    return data
+
+# Example usage:
+
+# Save some data to the file
+data_to_save = "This is some text to save to the file."
+save_data_to_txt(data_to_save)
+
+# Read the saved data back
+read_data = read_data_from_txt()
+print("Read data:", read_data)

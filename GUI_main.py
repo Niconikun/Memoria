@@ -1,5 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk  # For image display
+from matplotlib import pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 def show_next_content():
     global current_page
@@ -28,7 +30,12 @@ def show_next_content():
         text_input = tk.Entry(window)
         text_input.pack()
 
-        next_button.config(text="Finish")  # Change button text on the last page
+        
+    elif current_page == 3:
+        label = tk.Label(content_frame, text="This is the third page!")
+        label.pack()
+        next_button.config(text="Finish") 
+    # Change button text on the last page
     else:
         window.destroy()  # Close the window after the last page
 
