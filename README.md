@@ -1,4 +1,4 @@
-# Memoria
+# Bachelor Thesis
 --------------------------------------------------------------------------------
 ////////////////////////////////        //////  /////          /                
   ************************************  ******  ***** **       ***
@@ -11,14 +11,14 @@
                                                                    ****      ***
                                                                      ,*        *
 --------------------------------------------------------------------------------
-Programa creado por: Nicolás Sepúlveda
-Para Memoria de Título
+Program made by: Nicolás Sepúlveda
+For his Bachelor Thesis
 --------------------------------------
 
 
-Cómo utilizar la herramienta:
-1.- Extraer todos los archivos a una carpeta cualquiera.
-2.- Abrir en su compilador de Python (Pycharm, Spyder, Visual Studio Code, etc) la carpeta que contiene todos los archivos extraídos.
-3.- Ejecutar sólamente Main_est.py, el resto de los archivos se ejecutarán en conjunto con este.
-4.- Operar el programa y obtener los resultados.
-5.- En el archivo data.csv puedes recuperar los datos calculados por el sistema.No tocar el otro archivo .csv "Datos de Proovedores de Subsistemas".
+How to use the tool:
+1.- Extract all the files to any folder.
+2.- Open the folder that contains all the extracted files in your Python compiler (Pycharm, Spyder, Visual Studio Code, etc.).
+3.- Execute only Main_est.py, the rest of the files will be executed together with it.
+4.- Operate the program and obtain the results.
+5.- In the data.csv file you can recover the data calculated by the system. Do not touch the other .csv file "Subsystem Supplier Data".
