@@ -80,19 +80,19 @@ def Reliability_CubeSat(EPS_redundancy, Time_years): # Subsystem level realibili
 
 def DSM_reliability_noutofp(R_CubeSat, DSM_min_amount):
     R_DSM = 1
-    for counter in np.arange(2 ** len(R_CubeSat)):
+    for counter in np.arange(2 ** len(R_CubeSat)): # Defines the amount of possibilities the system could fail
         R_partial = 1
         bina = bin(counter)[2:].zfill(len(R_CubeSat))
         if bina.count('1') <= len(R_CubeSat) - DSM_min_amount:
             continue
         else:
-            for k in np.arange(len(bina)):
+            for k in np.arange(len(bina)): # Calculates and multiplies the probability of each possibility
                 if bina[k] != '0':
                     R_partial *= 1 - R_CubeSat[k]
                 else:
                     R_partial *= R_CubeSat[k]
             R_DSM -= R_partial
-    return R_DSM 
+    return R_DSM # Outputs the reliability of the DSM in an instance of time
 
 
 def phased_deployment(t, relaunch_rate, mission_time, DSM_initial_amount, DSM_relaunch_amount, EPS_redundancy):
