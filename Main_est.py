@@ -3,17 +3,24 @@ from mpl_toolkits.mplot3d import Axes3D
 from csv import writer
 
 '''
+This code is the one to be run. This is the file where the inputs are set and the iterations run
+based on the user's desire. The inputs define the parameters of the DSM and simulation, as well as
+outputing the Reliability graphs.
+---------------------------------
+INPUTS
+Define variables
 
 '''
 
-R_tot = []
+'''Empty arrays and strings'''
+R_simulation = []
 masa = []
 volumen = []
 costo = []
-ciclo_et = ''
-label = []
+iteration = ''
+graph_labels = []
 
-while ciclo_et != 'n' or ciclo_et != 'N':
+while iteration != 'n' or iteration != 'N':
 
     EPS_redundancy = ''
     Phase_Deployment = ''
@@ -27,86 +34,59 @@ while ciclo_et != 'n' or ciclo_et != 'N':
             EPS_redundancy = False
             break
         else:
-            print('ERROR. Lo ingresado no es correcto, por favor intente nuevamente.')
+            print('ERROR. Please try again.')
     print('----------------------------------------------------------')
-    DSM_min_amount = int(input('¿Cuál es la cantidad de satélites mínimos que debe componer el cluster? Ingrese un '
-                            'número: '))
+    DSM_min_amount = int(input('What is the minimal amount of CubeSats the DSM is composed of? Enter an integer: '))
     print('----------------------------------------------------------')
-    DSM_initial_amount = int(input('¿Cuál es la cantidad de satélites a comenzar? Ingrese un número: '))
+    DSM_initial_amount = int(input('What is the amount of CubeSats the DSM begins on the first batch? Enter an integer: '))
     print('----------------------------------------------------------')
 
-    Mission_time = int(input('¿Cuánto dura la misión? Ingrese un número: '))
+    Mission_time = int(input('How much time does the mission last? Enter an integer: '))
     print('----------------------------------------------------------')
 
     while Phase_Deployment != 'y' or Phase_Deployment != 'Y' or Phase_Deployment != 'n' or Phase_Deployment != 'N':
-        Phase_Deployment = input('¿Despliegue en Fase? (y/n): ')
+        Phase_Deployment = input('¿¨Phased Deployment? (y/n): ')
         print('----------------------------------------------------------')
         if Phase_Deployment != 'y' and Phase_Deployment != 'Y':
             from Reliability import no_phase
 
-            x, R_sys = no_phase(EPS_redundancy, DSM_min_amount, DSM_initial_amount, Mission_time)
+            Time_years, R_DSM = no_phase(EPS_redundancy, DSM_min_amount, DSM_initial_amount, Mission_time)
             relaunch_rate = 0
             DSM_relaunch_amount = 0
             break
         else:
-            DSM_relaunch_amount = int(input('¿Cuál es la cantidad de satélites a relanzar? Ingrese un número: '))
+            DSM_relaunch_amount = int(input('How many CubeSats are to be relaunched? Enter and integer: '))
             print('----------------------------------------------------------')
-            relaunch_rate = int(input('¿Cuántas veces se vuelven a lanzar los CubeSats por año? Ingrese un número: '))
+            relaunch_rate = int(input('How many times per year will the CubeSats be relaunched? Enter an integer: '))
             print('----------------------------------------------------------')
             from Reliability import Reliability
 
-            x, R_sys = Reliability(EPS_redundancy, DSM_min_amount, DSM_initial_amount, DSM_relaunch_amount, relaunch_rate, Mission_time)
+            Time_years, R_DSM = Reliability(EPS_redundancy, DSM_min_amount, DSM_initial_amount, DSM_relaunch_amount, relaunch_rate, Mission_time)
             break
-    ciclo_et = input('¿Quieres realizar otra configuración? (y/n): ')
-    if ciclo_et == 'n' or ciclo_et == 'N':
+    iteration = input('Do you want to try another DSM setting? (y/n): ')
+    if iteration == 'n' or iteration == 'N':
         print('----------------------------------------------------------')
         break
     else:
         print('----------------------------------------------------------')
-        R_tot.append(R_sys)
-        label.append('EPS_redundancy: ' + str(EPS_redundancy) + ', min: ' + str(DSM_min_amount) + ', ini: ' + str(DSM_initial_amount) + ', '
-                                                                                                                'rel:'
+        R_simulation.append(R_DSM)
+        graph_labels.append('EPS_redundancy: ' + str(EPS_redundancy) + ', min: ' + str(DSM_min_amount) + ', ini: ' + str(DSM_initial_amount) + ', '
+                                                                                                                'relaunch:'
                                                                                                                 ' ' +
-                     str(DSM_relaunch_amount) + ',tasa: ' + str(relaunch_rate))
+                     str(DSM_relaunch_amount) + ',rate: ' + str(relaunch_rate))
         continue
 
-R_tot.append(R_sys)
+R_simulation.append(R_DSM)
 
-
-with open('data.csv', 'a') as file:
-    writer_object = writer(file)
-    writer_object.writerow([DSM_min_amount, DSM_initial_amount, DSM_relaunch_amount, relaunch_rate])
-    writer_object.writerow([R_tot])
-    writer_object.writerow([masa])
-    writer_object.writerow([volumen])
-    writer_object.writerow([costo])
-    writer_object.writerow([])
-    file.close()
-
-label.append('EPS_redundancy: ' + str(EPS_redundancy) + ', min: ' + str(DSM_min_amount) + ', ini: ' + str(DSM_initial_amount) + ', rel: ' + str(DSM_relaunch_amount) + ', tasa: ' + str(relaunch_rate))
+graph_labels.append('EPS_redundancy: ' + str(EPS_redundancy) + ', min: ' + str(DSM_min_amount) + ', ini: ' + str(DSM_initial_amount) + ', relaunch: ' + str(DSM_relaunch_amount) + ', rate: ' + str(relaunch_rate))
 
 plt.figure(1)
 
-for cont in range(len(R_tot)):
-    plt.plot(x, R_tot[cont], label=label[cont])
+for cont in range(len(R_simulation)):
+    plt.plot(Time_years, R_simulation[cont], label=graph_labels[cont])
 
 plt.xlabel('Tiempo (años)')
 plt.ylabel('Confiabilidad (-)')
 plt.legend()
 plt.grid(True)
-
-'''
-fig = plt.figure(2, figsize=(12, 10))
-ax = fig.add_subplot(111, projection=Axes3D.name)
-ax.set_ylabel('Masa Disponible para Payload (g)')
-ax.set_zlabel('Volumen Disponible para Payload (U)')
-ax.set_xlabel('Costo $USD')
-ax.view_init(20, -120)
-
-for count in range(len(masa)):
-    ax.scatter(costo[count], masa[count], volumen[count], 'o', label=label[count])
-
-
-fig.legend()
-'''
 plt.show()
