@@ -18,15 +18,17 @@ variable is inside the distribution. This function is not used in the process.
 defined by Bouwmeester et al, 2022. It builds the reliability functions of the subsystems defined 
 by the author and outputs the reliability of the CubeSat system considering all subsystems in series.
 If the user defines the existence of a redundancy in EPS, it will only act the EPS subsystem as parallel.
-- DSM_reliability_noutofp:
-- phased_deployment
+- DSM_reliability_noutofp: Function that outputs the Reliability of the DSM following an n-out-of-p system.
+It calculates all of the possibilities in which the system fails, by using all of binary numbers between 0 and 2^n elements.
+This function only works with time in float format and not as an array.
+- phased_deployment: Function that, if selected the phased deployment, it asks if the time analyzed passes through a threshhold
+where the new batch is launched. If it did, then it add new elements to the systems and their reliability curves. If not, it continues.
 - no_phase: Mission strategy where the DSM is not updated or added new batches or generations, regardless of redundancy presence.
 - Reliability: Mission strategy where the amount of elements in a DSM is updated or added new batches or generations every certain amount of time.
 '''
 
 
 def rejection_sampling(probability_distribution):
-    # método de rejection sampling
     member_count = len(probability_distribution)
     step_size = 1.00 / (member_count * 1.00)
 
@@ -36,10 +38,10 @@ def rejection_sampling(probability_distribution):
     while not accept:
         # generate r_temp and use it to determine R:
         random_generator = Random()
-        r_temp = random_generator.random()
+        r_temporal = random_generator.random()
 
-        bina = math.ceil(r_temp / step_size)
-        binned_object = probability_distribution[bina - 1]
+        random_ceil = math.ceil(r_temporal / step_size)
+        binned_object = probability_distribution[random_ceil - 1]
         r_value = binned_object['value']
         r_probability = binned_object['probability']
 
