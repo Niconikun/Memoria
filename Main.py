@@ -7,7 +7,6 @@ outputing the reliability graphs. This file uses the functions set on Reliabilit
 ---------------------------------
 INPUTS
 Mission_time: How long does the DSM mission lasts, in years.
-
 iteration: string that asks whether the user wants to try another DSM configuration
 graph_labels: array that compiles the configuration parameters entered to be lated used as the graph's label.
 EPS_redundancy: Boolean variable, defines the existence or absence in redundancy in EPS subsystem.
