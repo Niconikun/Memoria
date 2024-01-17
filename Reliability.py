@@ -6,10 +6,26 @@ import scipy as sp
 
 '''
 The purpose of this code is to define several step functions. These steps allow the calculation of
-the reliability curves of subsystems and systems depending on the presence of redundancy in EPS. '''
+the reliability curves of subsystems and systems depending on the presence of redundancy in EPS
+and the mission strategy selected. This file is not meant to be run, but rather it is called by main.py.
+
+Definition of Functions written
+
+- rejection_sampling: Function used to generate observations from a distribution. It generates a 
+random value and checks if it's inside or outside the distribution. The iteration stops until the
+variable is inside the distribution. This function is not used in the process.
+- Reliability_CubeSat: Function that outputs the reliability of the CubeSat based on the curves
+defined by Bouwmeester et al, 2022. It builds the reliability functions of the subsystems defined 
+by the author and outputs the reliability of the CubeSat system considering all subsystems in series.
+If the user defines the existence of a redundancy in EPS, it will only act the EPS subsystem as parallel.
+- DSM_reliability_noutofp:
+- phased_deployment
+- no_phase: Mission strategy where the DSM is not updated or added new batches or generations, regardless of redundancy presence.
+- Reliability: Mission strategy where the amount of elements in a DSM is updated or added new batches or generations every certain amount of time.
+'''
 
 
-def draw_(probability_distribution):
+def rejection_sampling(probability_distribution):
     # método de rejection sampling
     member_count = len(probability_distribution)
     step_size = 1.00 / (member_count * 1.00)
@@ -39,7 +55,7 @@ def draw_(probability_distribution):
     return r_value
 
 ## MODEL INPUTS
-def dist(EPS_redundancy, x): # Subsystem level realibility inputs Source: Bouwmeeter et al 2022 - Fog 11
+def Reliability_CubeSat(EPS_redundancy, x): # Subsystem level realibility inputs Source: Bouwmeeter et al 2022 - Fog 11
     # INPUTS for subsystems in the following sequence ADCS; CDHS; COMMS; STS&DepS and P/L; EPS
     mu = [15.4, 11.5, 13.7, 14.3, 14.3, 9.4]    #Log-normal \mu
     sigma = [10, 8.39, 9.79, 9.21, 9.21, 8.18]  #Log-normal \sigma_1
@@ -63,7 +79,7 @@ def dist(EPS_redundancy, x): # Subsystem level realibility inputs Source: Bouwme
 
 
 #Determines the minimum number of operational satellites required to stay at ... 
-def rel_builder(R_elem, ctd_sat_min):
+def DSM_reliability_noutofp(R_elem, ctd_sat_min):
     R_s = 1
     for counter in np.arange(2 ** len(R_elem)):
         rel = 1
@@ -80,13 +96,13 @@ def rel_builder(R_elem, ctd_sat_min):
     return R_s #R_S stands for DSM reliability @Change consistency in code 
 
 
-def rel_creator(t, relaunch_rate, mission_time, sat_ctd_ini, sat_ctd_rel, EPS_redundancy):
-    Ans = np.ones(sat_ctd_ini) * dist(EPS_redundancy, t)
+def phased_deployment(t, relaunch_rate, mission_time, sat_ctd_ini, sat_ctd_rel, EPS_redundancy):
+    Ans = np.ones(sat_ctd_ini) * Reliability_CubeSat(EPS_redundancy, t)
     x = np.linspace(0, mission_time, (mission_time * relaunch_rate), dtype=str)
 
     for a in x:
         if Decimal(str(t)) >= Decimal(a) > Decimal('0'):
-            Ans = np.append(Ans, np.ones(sat_ctd_rel) * dist(EPS_redundancy, t - float(a)))
+            Ans = np.append(Ans, np.ones(sat_ctd_rel) * Reliability_CubeSat(EPS_redundancy, t - float(a)))
         else:
             continue
     return Ans.tolist()
@@ -97,8 +113,8 @@ def no_phase(EPS_redundancy, ctd_sat_min, ctd_sat_ini, Mission_time):
 
     R_sys = []
     for t in x:
-        R_elem = np.ones(ctd_sat_ini) * dist(EPS_redundancy, t)
-        R_sys.append(rel_builder(R_elem, ctd_sat_min))
+        R_elem = np.ones(ctd_sat_ini) * Reliability_CubeSat(EPS_redundancy, t)
+        R_sys.append(DSM_reliability_noutofp(R_elem, ctd_sat_min))
 
     return x, R_sys
 
@@ -110,8 +126,8 @@ def Reliability(EPS_redundancy, ctd_sat_min, ctd_sat_ini, DSM_relaunch_amount, r
 
     R_sys = []
     for t in x:
-        R_elem = rel_creator(t, relaunch_rate, Mission_time, ctd_sat_ini, DSM_relaunch_amount, EPS_redundancy)
-        R_sys.append(rel_builder(R_elem, ctd_sat_min))
+        R_elem = phased_deployment(t, relaunch_rate, Mission_time, ctd_sat_ini, DSM_relaunch_amount, EPS_redundancy)
+        R_sys.append(DSM_reliability_noutofp(R_elem, ctd_sat_min))
 
     return x, R_sys
 
