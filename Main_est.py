@@ -44,7 +44,7 @@ while ciclo_et != 'n' or ciclo_et != 'N':
         if Phase_Deployment != 'y' and Phase_Deployment != 'Y':
             from Reliability import no_phase
 
-            x, R_sys, masa_d, volumen_d, costo_d = no_phase(EPS_redundancy, DSM_min_amount, DSM_initial_amount, Mission_time)
+            x, R_sys = no_phase(EPS_redundancy, DSM_min_amount, DSM_initial_amount, Mission_time)
             relaunch_rate = 0
             DSM_relaunch_amount = 0
             break
@@ -55,7 +55,7 @@ while ciclo_et != 'n' or ciclo_et != 'N':
             print('----------------------------------------------------------')
             from Reliability import Reliability
 
-            x, R_sys, masa_d, volumen_d, costo_d = Reliability(EPS_redundancy, DSM_min_amount, DSM_initial_amount, DSM_relaunch_amount, relaunch_rate, Mission_time)
+            x, R_sys = Reliability(EPS_redundancy, DSM_min_amount, DSM_initial_amount, DSM_relaunch_amount, relaunch_rate, Mission_time)
             break
     ciclo_et = input('¿Quieres realizar otra configuración? (y/n): ')
     if ciclo_et == 'n' or ciclo_et == 'N':
@@ -64,9 +64,6 @@ while ciclo_et != 'n' or ciclo_et != 'N':
     else:
         print('----------------------------------------------------------')
         R_tot.append(R_sys)
-        masa.append(masa_d)
-        volumen.append(volumen_d)
-        costo.append(costo_d)
         label.append('EPS_redundancy: ' + str(EPS_redundancy) + ', min: ' + str(DSM_min_amount) + ', ini: ' + str(DSM_initial_amount) + ', '
                                                                                                                 'rel:'
                                                                                                                 ' ' +
@@ -74,9 +71,7 @@ while ciclo_et != 'n' or ciclo_et != 'N':
         continue
 
 R_tot.append(R_sys)
-masa.append(masa_d)
-volumen.append(volumen_d)
-costo.append(costo_d)
+
 
 with open('data.csv', 'a') as file:
     writer_object = writer(file)
