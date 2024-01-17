@@ -45,14 +45,14 @@ while iteration != 'n' or iteration != 'N':
             EPS_redundancy = False
             break
         else:
-            print('ERROR. Please try again.')
+            print('ERROR. Please try again.') # ask you the initial size of the DSM and its minimum amount of operability
     print('----------------------------------------------------------')
     DSM_min_amount = int(input('What is the minimal amount of CubeSats the DSM is composed of? Enter an integer: '))
     print('----------------------------------------------------------')
     DSM_initial_amount = int(input('What is the amount of CubeSats the DSM begins on the first batch? Enter an integer: '))
     print('----------------------------------------------------------')
 
-    Mission_time = int(input('How much time does the mission last? Enter an integer: '))
+    Mission_time = int(input('How much time does the mission last? Enter an integer: ')) #ask how long is the mission
     print('----------------------------------------------------------')
 # Ask you whether the launch strategy is a phased deployment. If true it calls function Reliability and input other parameters, else it calls no_phase
     while Phase_Deployment != 'y' or Phase_Deployment != 'Y' or Phase_Deployment != 'n' or Phase_Deployment != 'N':
