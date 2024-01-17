@@ -56,80 +56,77 @@ def rejection_sampling(probability_distribution):
 
     return r_value
 
-## MODEL INPUTS
-def Reliability_CubeSat(EPS_redundancy, x): # Subsystem level realibility inputs Source: Bouwmeeter et al 2022 - Fog 11
-    # INPUTS for subsystems in the following sequence ADCS; CDHS; COMMS; STS&DepS and P/L; EPS
+def Reliability_CubeSat(EPS_redundancy, Time_years): # Subsystem level realibility inputs Source: Bouwmeeter et al 2022 - Fig 11
+    # INPUTS for subsystems in the following collumn sequence ADCS; CDHS; COMMS; STS&DepS and P/L; EPS
     mu = [15.4, 11.5, 13.7, 14.3, 14.3, 9.4]    #Log-normal \mu
     sigma = [10, 8.39, 9.79, 9.21, 9.21, 8.18]  #Log-normal \sigma_1
     theta = [2.6, 8.1, 2.6, 2.7, 2.7, 2.9]      #Gomperts \theta
     nu = [9.1e-5, 0.0167, 8.3e-5, 0.00011, 0.00011, 0.00011]    #Gompertz \nu
-    rel = 1
+    R_CubeSat = 1
 
 #Subsystem redundancy true is redundant (red) and false (off) is no subsystem redundancy
     #Only analisis case for EPS redundancy, due to its lower reliability over time
-    counter: int
-    # esto tiene que entregar un número, no un array
+    counter: int # counter is a variable used for the loop as counter
     for counter in np.arange(len(mu)):
         if EPS_redundancy and counter == 5:  #Counter ==5 is the position in the input vector for EPS reliability
-            rel *= 1 - np.square(
-                1 - sp.stats.lognorm.sf(x, sigma[counter], scale=np.exp(mu[counter])) * sp.stats.gompertz.sf(x, nu[
+            R_CubeSat *= 1 - np.square(
+                1 - sp.stats.lognorm.sf(Time_years, sigma[counter], scale=np.exp(mu[counter])) * sp.stats.gompertz.sf(Time_years, nu[
                     counter] / theta[counter], scale=theta[counter]))
         else: #No redundancy
-            rel *= sp.stats.lognorm.sf(x, sigma[counter], scale=np.exp(mu[counter])) * sp.stats.gompertz.sf(x, nu[
+            R_CubeSat *= sp.stats.lognorm.sf(Time_years, sigma[counter], scale=np.exp(mu[counter])) * sp.stats.gompertz.sf(Time_years, nu[
                 counter] / theta[counter], scale=theta[counter])
-    return rel
+    return R_CubeSat #outputs the system level reliability curve
 
 
-#Determines the minimum number of operational satellites required to stay at ... 
-def DSM_reliability_noutofp(R_elem, ctd_sat_min):
-    R_s = 1
-    for counter in np.arange(2 ** len(R_elem)):
-        rel = 1
-        bina = bin(counter)[2:].zfill(len(R_elem))
-        if bina.count('1') <= len(R_elem) - ctd_sat_min:
+def DSM_reliability_noutofp(R_CubeSat, DSM_min_amount):
+    R_DSM = 1
+    for counter in np.arange(2 ** len(R_CubeSat)):
+        R_partial = 1
+        bina = bin(counter)[2:].zfill(len(R_CubeSat))
+        if bina.count('1') <= len(R_CubeSat) - DSM_min_amount:
             continue
         else:
             for k in np.arange(len(bina)):
                 if bina[k] != '0':
-                    rel *= 1 - R_elem[k]
+                    R_partial *= 1 - R_CubeSat[k]
                 else:
-                    rel *= R_elem[k]
-            R_s -= rel
-    return R_s #R_S stands for DSM reliability @Change consistency in code 
+                    R_partial *= R_CubeSat[k]
+            R_DSM -= R_partial
+    return R_DSM 
 
 
-def phased_deployment(t, relaunch_rate, mission_time, sat_ctd_ini, sat_ctd_rel, EPS_redundancy):
-    Ans = np.ones(sat_ctd_ini) * Reliability_CubeSat(EPS_redundancy, t)
+def phased_deployment(t, relaunch_rate, mission_time, DSM_initial_amount, DSM_relaunch_amount, EPS_redundancy):
+    Ans = np.ones(DSM_initial_amount) * Reliability_CubeSat(EPS_redundancy, t)
     x = np.linspace(0, mission_time, (mission_time * relaunch_rate), dtype=str)
 
     for a in x:
         if Decimal(str(t)) >= Decimal(a) > Decimal('0'):
-            Ans = np.append(Ans, np.ones(sat_ctd_rel) * Reliability_CubeSat(EPS_redundancy, t - float(a)))
+            Ans = np.append(Ans, np.ones(DSM_relaunch_amount) * Reliability_CubeSat(EPS_redundancy, t - float(a)))
         else:
             continue
     return Ans.tolist()
 
 
-def no_phase(EPS_redundancy, ctd_sat_min, ctd_sat_ini, Mission_time):
-    x = np.linspace(0, Mission_time, Mission_time * 365)
+def no_phase(EPS_redundancy, DSM_min_amount, DSM_initial_amount, Mission_time):
+    Time_years = np.linspace(0, Mission_time, Mission_time * 365)
 
-    R_sys = []
-    for t in x:
-        R_elem = np.ones(ctd_sat_ini) * Reliability_CubeSat(EPS_redundancy, t)
-        R_sys.append(DSM_reliability_noutofp(R_elem, ctd_sat_min))
+    R_DSM = []
+    for t in Time_years:
+        R_elem = np.ones(DSM_initial_amount) * Reliability_CubeSat(EPS_redundancy, t)
+        R_DSM.append(DSM_reliability_noutofp(R_elem, DSM_min_amount))
 
-    return x, R_sys
+    return Time_years, R_DSM
 
 
-def Reliability(EPS_redundancy, ctd_sat_min, ctd_sat_ini, DSM_relaunch_amount, relaunch_rate, Mission_time):
+def Reliability(EPS_redundancy, DSM_min_amount, DSM_initial_amount, DSM_relaunch_amount, relaunch_rate, Mission_time):
 
     year_to_day = 365
-    x = np.linspace(0, Mission_time, Mission_time * year_to_day)
+    Time_years = np.linspace(0, Mission_time, Mission_time * year_to_day)
 
-    R_sys = []
-    for t in x:
-        R_elem = phased_deployment(t, relaunch_rate, Mission_time, ctd_sat_ini, DSM_relaunch_amount, EPS_redundancy)
-        R_sys.append(DSM_reliability_noutofp(R_elem, ctd_sat_min))
+    R_DSM = []
+    for t in Time_years:
+        R_elem = phased_deployment(t, relaunch_rate, Mission_time, DSM_initial_amount, DSM_relaunch_amount, EPS_redundancy)
+        R_DSM.append(DSM_reliability_noutofp(R_elem, DSM_min_amount))
 
-    return x, R_sys
+    return Time_years, R_DSM
 
