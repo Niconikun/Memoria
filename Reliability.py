@@ -95,38 +95,38 @@ def DSM_reliability_noutofp(R_CubeSat, DSM_min_amount):
     return R_DSM # Outputs the reliability of the DSM in an instance of time
 
 
-def phased_deployment(t, relaunch_rate, mission_time, DSM_initial_amount, DSM_relaunch_amount, EPS_redundancy):
-    Ans = np.ones(DSM_initial_amount) * Reliability_CubeSat(EPS_redundancy, t)
-    x = np.linspace(0, mission_time, (mission_time * relaunch_rate), dtype=str)
+def phased_deployment(Current_Time, relaunch_rate, mission_time, DSM_initial_amount, DSM_relaunch_amount, EPS_redundancy):
+    DSM_Size = np.ones(DSM_initial_amount) * Reliability_CubeSat(EPS_redundancy, Current_Time) #Defines current size of DSM
+    Deployment_Dates = np.linspace(0, mission_time, (mission_time * relaunch_rate), dtype=str) # Array that gives the dates for phased deployment
 
-    for a in x:
-        if Decimal(str(t)) >= Decimal(a) > Decimal('0'):
-            Ans = np.append(Ans, np.ones(DSM_relaunch_amount) * Reliability_CubeSat(EPS_redundancy, t - float(a)))
+    for a in Deployment_Dates: # if the current time is over the deployment date, it adds new elements to the DSM, else continues
+        if Decimal(str(Current_Time)) >= Decimal(a) > Decimal('0'):
+            DSM_Size = np.append(DSM_Size, np.ones(DSM_relaunch_amount) * Reliability_CubeSat(EPS_redundancy, Current_Time - float(a)))
         else:
             continue
-    return Ans.tolist()
+    return DSM_Size.tolist() # outputs the updated DSM size
 
 
 def no_phase(EPS_redundancy, DSM_min_amount, DSM_initial_amount, Mission_time):
-    Time_years = np.linspace(0, Mission_time, Mission_time * 365)
+    Time_years = np.linspace(0, Mission_time, Mission_time * 365) # sets mission time
 
     R_DSM = []
-    for t in Time_years:
-        R_elem = np.ones(DSM_initial_amount) * Reliability_CubeSat(EPS_redundancy, t)
-        R_DSM.append(DSM_reliability_noutofp(R_elem, DSM_min_amount))
+    for Current_Time in Time_years:
+        R_elem = np.ones(DSM_initial_amount) * Reliability_CubeSat(EPS_redundancy, Current_Time) #sets DSM size and cubesats reliabilities
+        R_DSM.append(DSM_reliability_noutofp(R_elem, DSM_min_amount)) #gets DSM reliability and appends it on the array
 
-    return Time_years, R_DSM
+    return Time_years, R_DSM # returns the mission time array and the reliability of the DSM
 
 
 def Reliability(EPS_redundancy, DSM_min_amount, DSM_initial_amount, DSM_relaunch_amount, relaunch_rate, Mission_time):
 
     year_to_day = 365
-    Time_years = np.linspace(0, Mission_time, Mission_time * year_to_day)
+    Time_years = np.linspace(0, Mission_time, Mission_time * year_to_day) # sets mission time
 
     R_DSM = []
-    for t in Time_years:
-        R_elem = phased_deployment(t, relaunch_rate, Mission_time, DSM_initial_amount, DSM_relaunch_amount, EPS_redundancy)
-        R_DSM.append(DSM_reliability_noutofp(R_elem, DSM_min_amount))
+    for Current_Time in Time_years:
+        R_elem = phased_deployment(Current_Time, relaunch_rate, Mission_time, DSM_initial_amount, DSM_relaunch_amount, EPS_redundancy) #sets DSM size and cubesats reliabilities, updating it to the current time
+        R_DSM.append(DSM_reliability_noutofp(R_elem, DSM_min_amount)) #gets DSM reliability and appends on the array
 
-    return Time_years, R_DSM
+    return Time_years, R_DSM # returns the mission time array and the reliability of the DSM
 
