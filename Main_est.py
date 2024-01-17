@@ -2,6 +2,10 @@ from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from csv import writer
 
+'''
+
+'''
+
 R_tot = []
 masa = []
 volumen = []
@@ -11,48 +15,47 @@ label = []
 
 while ciclo_et != 'n' or ciclo_et != 'N':
 
-    EPS_red = ''
-    b_inicio = ''
-    a_inicio = ''
+    EPS_redundancy = ''
+    Phase_Deployment = ''
 
-    while EPS_red != 'y' or EPS_red != 'Y' or EPS_red != 'n' or EPS_red != 'N':
-        EPS_red = input('EPS posee redundancia? (y/n): ')
-        if EPS_red == 'y' or EPS_red == 'Y':
-            EPS_red = True
+    while EPS_redundancy != 'y' or EPS_redundancy != 'Y' or EPS_redundancy != 'n' or EPS_redundancy != 'N':
+        EPS_redundancy = input('EPS posee redundancia? (y/n): ')
+        if EPS_redundancy == 'y' or EPS_redundancy == 'Y':
+            EPS_redundancy = True
             break
-        elif EPS_red == 'n' or EPS_red == 'N':
-            EPS_red = False
+        elif EPS_redundancy == 'n' or EPS_redundancy == 'N':
+            EPS_redundancy = False
             break
         else:
             print('ERROR. Lo ingresado no es correcto, por favor intente nuevamente.')
     print('----------------------------------------------------------')
-    ctd_sat_min = int(input('¿Cuál es la cantidad de satélites mínimos que debe componer el cluster? Ingrese un '
+    DSM_min_amount = int(input('¿Cuál es la cantidad de satélites mínimos que debe componer el cluster? Ingrese un '
                             'número: '))
     print('----------------------------------------------------------')
-    ctd_sat_ini = int(input('¿Cuál es la cantidad de satélites a comenzar? Ingrese un número: '))
+    DSM_initial_amount = int(input('¿Cuál es la cantidad de satélites a comenzar? Ingrese un número: '))
     print('----------------------------------------------------------')
 
     Mission_time = int(input('¿Cuánto dura la misión? Ingrese un número: '))
     print('----------------------------------------------------------')
 
-    while a_inicio != 'y' or a_inicio != 'Y' or a_inicio != 'n' or a_inicio != 'N':
-        a_inicio = input('¿Despliegue en Fase? (y/n): ')
+    while Phase_Deployment != 'y' or Phase_Deployment != 'Y' or Phase_Deployment != 'n' or Phase_Deployment != 'N':
+        Phase_Deployment = input('¿Despliegue en Fase? (y/n): ')
         print('----------------------------------------------------------')
-        if a_inicio != 'y' and a_inicio != 'Y':
+        if Phase_Deployment != 'y' and Phase_Deployment != 'Y':
             from Reliability import no_phase
 
-            x, R_sys, masa_d, volumen_d, costo_d = no_phase(EPS_red, ctd_sat_min, ctd_sat_ini, Mission_time)
-            tasa_gen = 0
-            ctd_sat_rel = 0
+            x, R_sys, masa_d, volumen_d, costo_d = no_phase(EPS_redundancy, DSM_min_amount, DSM_initial_amount, Mission_time)
+            relaunch_rate = 0
+            DSM_relaunch_amount = 0
             break
         else:
-            ctd_sat_rel = int(input('¿Cuál es la cantidad de satélites a relanzar? Ingrese un número: '))
+            DSM_relaunch_amount = int(input('¿Cuál es la cantidad de satélites a relanzar? Ingrese un número: '))
             print('----------------------------------------------------------')
-            tasa_gen = int(input('¿Cuántas veces se vuelven a lanzar los CubeSats por año? Ingrese un número: '))
+            relaunch_rate = int(input('¿Cuántas veces se vuelven a lanzar los CubeSats por año? Ingrese un número: '))
             print('----------------------------------------------------------')
             from Reliability import Reliability
 
-            x, R_sys, masa_d, volumen_d, costo_d = Reliability(EPS_red, ctd_sat_min, ctd_sat_ini, ctd_sat_rel, tasa_gen, Mission_time)
+            x, R_sys, masa_d, volumen_d, costo_d = Reliability(EPS_redundancy, DSM_min_amount, DSM_initial_amount, DSM_relaunch_amount, relaunch_rate, Mission_time)
             break
     ciclo_et = input('¿Quieres realizar otra configuración? (y/n): ')
     if ciclo_et == 'n' or ciclo_et == 'N':
@@ -64,10 +67,10 @@ while ciclo_et != 'n' or ciclo_et != 'N':
         masa.append(masa_d)
         volumen.append(volumen_d)
         costo.append(costo_d)
-        label.append('EPS_red: ' + str(EPS_red) + ', min: ' + str(ctd_sat_min) + ', ini: ' + str(ctd_sat_ini) + ', '
+        label.append('EPS_redundancy: ' + str(EPS_redundancy) + ', min: ' + str(DSM_min_amount) + ', ini: ' + str(DSM_initial_amount) + ', '
                                                                                                                 'rel:'
                                                                                                                 ' ' +
-                     str(ctd_sat_rel) + ',tasa: ' + str(tasa_gen))
+                     str(DSM_relaunch_amount) + ',tasa: ' + str(relaunch_rate))
         continue
 
 R_tot.append(R_sys)
@@ -77,7 +80,7 @@ costo.append(costo_d)
 
 with open('data.csv', 'a') as file:
     writer_object = writer(file)
-    writer_object.writerow([ctd_sat_min, ctd_sat_ini, ctd_sat_rel, tasa_gen])
+    writer_object.writerow([DSM_min_amount, DSM_initial_amount, DSM_relaunch_amount, relaunch_rate])
     writer_object.writerow([R_tot])
     writer_object.writerow([masa])
     writer_object.writerow([volumen])
@@ -85,7 +88,7 @@ with open('data.csv', 'a') as file:
     writer_object.writerow([])
     file.close()
 
-label.append('EPS_red: ' + str(EPS_red) + ', min: ' + str(ctd_sat_min) + ', ini: ' + str(ctd_sat_ini) + ', rel: ' + str(ctd_sat_rel) + ', tasa: ' + str(tasa_gen))
+label.append('EPS_redundancy: ' + str(EPS_redundancy) + ', min: ' + str(DSM_min_amount) + ', ini: ' + str(DSM_initial_amount) + ', rel: ' + str(DSM_relaunch_amount) + ', tasa: ' + str(relaunch_rate))
 
 plt.figure(1)
 
@@ -97,6 +100,7 @@ plt.ylabel('Confiabilidad (-)')
 plt.legend()
 plt.grid(True)
 
+'''
 fig = plt.figure(2, figsize=(12, 10))
 ax = fig.add_subplot(111, projection=Axes3D.name)
 ax.set_ylabel('Masa Disponible para Payload (g)')
@@ -107,29 +111,7 @@ ax.view_init(20, -120)
 for count in range(len(masa)):
     ax.scatter(costo[count], masa[count], volumen[count], 'o', label=label[count])
 
+
 fig.legend()
+'''
 plt.show()
-
-# ESTA PARTE HA DE SER EDITADA
-
-
-def save_data_to_txt(data, filename="data.txt"):
-    """Saves the given data to a .txt file."""
-    with open(filename, "w") as file:
-        file.write(data)
-
-def read_data_from_txt(filename="data.txt"):
-    """Reads data from a .txt file and returns it as a string."""
-    with open(filename, "r") as file:
-        data = file.read()
-    return data
-
-# Example usage:
-
-# Save some data to the file
-data_to_save = "This is some text to save to the file."
-save_data_to_txt(data_to_save)
-
-# Read the saved data back
-read_data = read_data_from_txt()
-print("Read data:", read_data)
