@@ -1,5 +1,11 @@
 import pandas as pd
 
+'''
+Ignore this file, it doesn't serve a functional purpose anymore. The purpose of this code was to graph the
+System Engineering Envelopes Tradespace by making a combination of the cost, volume and mass values set
+on the file called "Datos Proveedores Subsistemas.csv". This function was linked to the Reliability function,
+later removed.
+'''
 
 def Env_tradespace(EPS_red, CubeSt_Tipo, sat_ctd_total):
     Data = pd.read_csv("Datos Proveedores Subsistemas.csv", sep=';')
