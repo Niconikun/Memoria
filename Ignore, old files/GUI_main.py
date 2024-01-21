@@ -3,7 +3,7 @@ from tkinter import ttk
 from PIL import Image, ImageTk  # For image display
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-import Reliability
+import Python_Memoria.Reliability as Reliability
 
 '''
 Ignore this file, it doesn't serve a functional purpose. The purpose of this code is to

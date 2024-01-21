@@ -1,4 +1,8 @@
 from matplotlib import pyplot as plt
+from Python_Memoria.Reliability import no_phase
+from Python_Memoria.Reliability import Reliability
+
+
 
 '''
 This code is the one to be run. This is the file where the inputs are set and the iterations run
@@ -13,7 +17,7 @@ EPS_redundancy: Boolean variable, defines the existence or absence in redundancy
 Phase_Deployment: Boolean variable, defines the use of phased deployment as mission strategy.
 DSM_min_amount: Minimal amount of elements the DSM must have operative.
 DSM_initial_amount: Initial amount of elements launched in the first batch, backups included.
-relaunch_rate: Amount of time per year to launch new batches to the DSM
+relaunch_rate: Amount of months between launches of new batches to the DSM
 DSM_relaunch_amount: Amount of satellites to be thrown per relaunch.
 cont: variable used in the iteration of a final graph.
 
@@ -59,7 +63,6 @@ while iteration != 'n' or iteration != 'N':
         Phase_Deployment = input('¿¨Phased Deployment? (y/n): ')
         print('----------------------------------------------------------')
         if Phase_Deployment != 'y' and Phase_Deployment != 'Y':
-            from Reliability import no_phase
 
             Time_years, R_DSM = no_phase(EPS_redundancy, DSM_min_amount, DSM_initial_amount, Mission_time)
             relaunch_rate = 0
@@ -68,9 +71,8 @@ while iteration != 'n' or iteration != 'N':
         else:
             DSM_relaunch_amount = int(input('How many CubeSats are to be relaunched? Enter and integer: '))
             print('----------------------------------------------------------')
-            relaunch_rate = int(input('How many times per year will the CubeSats be relaunched? Enter an integer: '))
+            relaunch_rate = int(input('Every how many months do you want to deploy satellites again? Enter an integer: '))
             print('----------------------------------------------------------')
-            from Reliability import Reliability
 
             Time_years, R_DSM = Reliability(EPS_redundancy, DSM_min_amount, DSM_initial_amount, DSM_relaunch_amount, relaunch_rate, Mission_time)
             break
@@ -94,7 +96,7 @@ while iteration != 'n' or iteration != 'N':
 plt.figure(1)
 
 for cont in range(len(R_simulation)):
-    plt.plot(Time_years, R_simulation[cont], label=graph_labels[cont])
+    plt.plot(Time_years / 12, R_simulation[cont], label=graph_labels[cont])
 
 plt.xlabel('Tiempo (años)')
 plt.ylabel('Confiabilidad (-)')
