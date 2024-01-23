@@ -68,11 +68,11 @@ def DSM_reliability_noutofp(R_CubeSat, DSM_min_amount):
 
 def phased_deployment(Current_Time, relaunch_rate, mission_time, DSM_initial_amount, DSM_relaunch_amount, EPS_redundancy):
     DSM_Size = np.ones(DSM_initial_amount) * Reliability_CubeSat(EPS_redundancy, Current_Time) #Defines current size of DSM
-    Deployment_Dates = np.arange(relaunch_rate, (mission_time * year_to_month) + 1, relaunch_rate, dtype=int) # Array that gives the dates for phased deployment
+    Deployment_Dates = np.arange(relaunch_rate, (mission_time * year_to_month) + 1, relaunch_rate, dtype=int) # Array that gives the dates for phased deployment, in months
 
     for a in Deployment_Dates: # if the current time is over the deployment date, it adds new elements to the DSM, else continues
-        if int(Current_Time) >= int(a):
-            DSM_Size = np.append(DSM_Size, np.ones(DSM_relaunch_amount) * Reliability_CubeSat(EPS_redundancy, Current_Time - float(a)))
+        if int(Current_Time * year_to_month) >= int(a):
+            DSM_Size = np.append(DSM_Size, np.ones(DSM_relaunch_amount) * Reliability_CubeSat(EPS_redundancy, Current_Time - float(a / year_to_month)))
         else:
             continue
     return DSM_Size.tolist() # outputs the updated DSM size
@@ -90,11 +90,12 @@ def no_phase(EPS_redundancy, DSM_min_amount, DSM_initial_amount, Mission_time):
 
 
 def Reliability(EPS_redundancy, DSM_min_amount, DSM_initial_amount, DSM_relaunch_amount, relaunch_rate, Mission_time):
-    Time_years = np.arange(0, Mission_time * year_to_month) # sets mission time
+    Time_years = np.arange(0, Mission_time * year_to_month) # sets mission time, in months. later given in years
 
     R_DSM = []
     for Current_Time in Time_years:
         R_elem = phased_deployment(Current_Time / year_to_month, relaunch_rate, Mission_time, DSM_initial_amount, DSM_relaunch_amount, EPS_redundancy) #sets DSM size and cubesats reliabilities, updating it to the current time
+        print(R_elem)
         R_DSM.append(DSM_reliability_noutofp(R_elem, DSM_min_amount)) #gets DSM reliability and appends on the array
 
     return Time_years, R_DSM # returns the mission time array and the reliability of the DSM

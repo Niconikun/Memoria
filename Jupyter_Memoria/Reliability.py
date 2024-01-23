@@ -83,7 +83,7 @@ def no_phase(EPS_redundancy, DSM_min_amount, DSM_initial_amount, Mission_time):
 
     R_DSM = []
     for Current_Time in Time_years:
-        R_elem = np.ones(DSM_initial_amount) * Reliability_CubeSat(EPS_redundancy, Current_Time / year_to_month) #sets DSM size and cubesats reliabilities
+        R_elem = np.ones(DSM_initial_amount) * Reliability_CubeSat(EPS_redundancy, Current_Time  / year_to_month) #sets DSM size and cubesats reliabilities
         R_DSM.append(DSM_reliability_noutofp(R_elem, DSM_min_amount)) #gets DSM reliability and appends it on the array
 
     return Time_years, R_DSM # returns the mission time array and the reliability of the DSM

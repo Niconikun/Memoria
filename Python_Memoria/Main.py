@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
-from Python_Memoria.Reliability import no_phase
-from Python_Memoria.Reliability import Reliability
+from Reliability import no_phase
+from Reliability import Reliability
 
 
 
