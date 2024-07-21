@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1721522627.27705 "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" "main.pdf" "main" 1721522628.10798 0
-  "C:/Users/nicos/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1721517367 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+["pdflatex"] 1721523131.20714 "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" "main.pdf" "main" 1721523131.95648 0
+  "C:/Users/nicos/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1721522907 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1000.pk" 1721517376 25420 98046596910d72c7368d144b9599da04 ""
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecrm0600.pk" 1721522507 14880 4044279cd31688e5f1b2c295c41f9fa7 ""
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecrm0700.pk" 1721522510 17000 375bdde5a3bf173d79d82861a16a79e5 ""
@@ -54,11 +54,11 @@
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/tex/latex/l3kernel/expl3.sty" 1717574659 6565 9112779ee7624275fd04efaf61c82420 ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/tex/latex/l3packages/xparse/xparse.sty" 1716378382 9327 090c6c81eff433de1562ec6a5b1b31ee ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/tex/latex/natbib/natbib.sty" 1292249081 46712 1c8843383c0bd05870c45fa0ebea6cc2 ""
-  "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" 1721522626 1314 06633b004696a0ff30f8d793b05dce31 ""
+  "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" 1721523129 1125 eefd4ae90425ff074a4fea5b9c7c36ec ""
   "elsarticle.cls" 1721513831 45320 6a09c4ebaa5b931b22a08adb773e6074 ""
-  "main.aux" 1721522627 828 d796932584abad9d987e760bfc6fabb0 "pdflatex"
-  "main.spl" 1721522627 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1721522626 1314 06633b004696a0ff30f8d793b05dce31 ""
+  "main.aux" 1721523131 826 c4fd1b77372d752aaec22e0f9b800d22 "pdflatex"
+  "main.spl" 1721523131 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1721523129 1125 eefd4ae90425ff074a4fea5b9c7c36ec ""
   (generated)
   "main.aux"
   "main.log"
