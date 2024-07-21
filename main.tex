@@ -1,7 +1,13 @@
 \documentclass{elsarticle}
 \begin{document}
 
-\title{Mi primer document en LaTeX}
+\title{Mi primer document en \LaTeX}
+\tnotetext[t1]{This document is the results of the research
+project funded by the National Science Foundation.}
+\tnotetext[t2]{The second title footnote which is a longer
+text matter to fill through the whole text width and
+overflow into another line in the footnotes area of the
+first page.}
 \author[1]{Jos Migchielsen\corref{cor1}%
 \fnref{fn1}}
 \ead{J.Migchielsen@elsevier.com}
@@ -20,27 +26,12 @@ lines of footnote text.}
 \maketitle
 
 \begin{abstract}
-    In this work we demonstrate the formation of a new type of
-    polarity on the interface between a.
+\input{Chapters/abstract.tex}
 \end{abstract}
 
 \begin{keyword}
-    quadruple exit \sep{} polarity \sep{} WGM
+quadruple exit \sep{} polarity \sep{} WGM
 \end{keyword}
 
-\section{Introduction}
-This is a basic example.
-
-\section{Section 1}
-nice.
-
-\subsection{Subsection 1.1}
-oh cool.
-
-\subsubsection{Subsubsection 1.1.1}
-Even subsubsection.
-
-\section{Conclusions}
-You conclude here.
 
 \end{document}
