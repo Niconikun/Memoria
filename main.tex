@@ -1,6 +1,7 @@
 \documentclass{elsarticle}
 \usepackage{amssymb}
 \usepackage{lipsum}
+\journal{Acta Astronautica}
 
 \begin{document}
 \begin{frontmatter}
@@ -27,8 +28,6 @@ footnote is not yet sufficiently long enough to make two
 lines of footnote text.}
 \fntext[fn3]{Yet another author footnote.}
 
-\maketitle
-
 \begin{abstract}
 \input{Chapters/abstract.tex}
 \end{abstract}
@@ -38,4 +37,14 @@ quadruple exit \sep{} polarity \sep{} WGM
 \end{keyword}
 
 \end{frontmatter}
+
+\input{Chapters/introduction.tex}
+
+\input{Chapters/blank_text.tex}
+
+\input{Chapters/acknowledgement.tex}
+
+\bibliographystyle{elsarticle-harv} 
+\bibliography{references}
+%% if there is any issues regarding citation, take into account that bibTex requires at least one cite to work.
 \end{document}
