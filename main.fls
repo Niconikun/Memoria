@@ -99,15 +99,9 @@ INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\tex\latex\base\t1cmtt.fd
 INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ectt0800.tfm
 INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm1440.tfm
-INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
-INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi12.tfm
-INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
-INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
 INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
-INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam7.tfm
-INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 INPUT C:\Users\nicos\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\ecrm0700.tfm
@@ -117,14 +111,20 @@ INPUT Chapters\introduction.tex
 INPUT .\Chapters\blank_text.tex
 INPUT .\Chapters\blank_text.tex
 INPUT Chapters\blank_text.tex
+INPUT .\Chapters\Results and Discussions.tex
+INPUT .\Chapters\Results and Discussions.tex
+INPUT Chapters\Results and Discussions.tex
+INPUT .\Chapters\Conclusion.tex
+INPUT .\Chapters\Conclusion.tex
+INPUT Chapters\Conclusion.tex
+OUTPUT main.pdf
+INPUT C:\Users\nicos\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT .\Chapters\acknowledgement.tex
 INPUT .\Chapters\acknowledgement.tex
 INPUT Chapters\acknowledgement.tex
 INPUT .\main.bbl
 INPUT .\main.bbl
 INPUT main.bbl
-OUTPUT main.pdf
-INPUT C:\Users\nicos\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT main.aux
 INPUT C:\Users\nicos\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk
 INPUT C:\Users\nicos\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0600.pk

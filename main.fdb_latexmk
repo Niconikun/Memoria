@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1721528145.84109 "main.aux" "main.bbl" "main" 1721528212.66291 0
+["bibtex main"] 1721941344.91846 "main.aux" "main.bbl" "main" 1721941346.86015 0
   "./elsarticle-harv.bst" 1721506812 30002 58b59416722968003776982d370174f4 ""
   "./references.bib" 1721528059 947 49bec6699b1fd00f7972de359e86dfb7 ""
-  "main.aux" 1721528211 712 1a6ea4cd3de9dc3fcdfdfb7b3c12dd1b "pdflatex"
+  "main.aux" 1721941345 943 a0b39f17235aec1215c239006b077c62 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1721528210.38205 "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" "main.pdf" "main" 1721528212.66406 0
+["pdflatex"] 1721941345.2748 "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" "main.pdf" "main" 1721941346.8608 0
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1721527078 83335 c32053a268bc5f3a5633d05b0c9e39f8 ""
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1000.pk" 1721517376 25420 98046596910d72c7368d144b9599da04 ""
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecrm0600.pk" 1721522507 14880 4044279cd31688e5f1b2c295c41f9fa7 ""
@@ -36,14 +36,10 @@
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msbm10.tfm" 1233951854 908 2921f8a10601f252058503cc6570e581 ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msbm5.tfm" 1233951854 940 75ac932a52f80982a9f8ea75d03a34cf ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1233951854 940 228d6584342e91276bf566bcf9716b83 ""
-  "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmex10.tfm" 1136765053 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
-  "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmmi12.tfm" 1136765053 1524 4414a8315f39513458b80dfc63bff03a ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmmi6.tfm" 1136765053 1512 f21f83efb36853c0b70002322c1ab3ad ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmmi8.tfm" 1136765053 1520 eccf95517727cb11801f4f1aee3a21b4 ""
-  "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmr12.tfm" 1136765053 1288 655e228510b4c2a1abe905c368440826 ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmr6.tfm" 1136765053 1300 b62933e007d01cfd073f79b963c01526 ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmr8.tfm" 1136765053 1292 21c1c5bfeaebccffdb478fd231a0997d ""
-  "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy10.tfm" 1136765053 1124 6c73e740cf17375f03eec0ee63599741 ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy6.tfm" 1136765053 1116 933a60c408fc0a863a92debe84b2d294 ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmsy8.tfm" 1136765053 1120 8b7d695260f3cff42e636090a8002094 ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1247596666 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
@@ -74,16 +70,18 @@
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/tex/latex/lipsum/lipsum.ltd.tex" 1633253722 95525 6fd0552101a6b1f9b7a84b402ec435ba ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/tex/latex/lipsum/lipsum.sty" 1633253722 14690 c2c754218a7108db7823a4839c1bc3cd ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/tex/latex/natbib/natbib.sty" 1292249081 46712 1c8843383c0bd05870c45fa0ebea6cc2 ""
+  "Chapters/Conclusion.tex" 1721941171 213 38511ed1d663e2a270833a4ee8820b00 ""
+  "Chapters/Results and Discussions.tex" 1721941132 913 ae879c7364576372c4296226d7ca8f79 ""
   "Chapters/abstract.tex" 1721526135 28 81e0d6ad5c2b0caaa6742192695822c1 ""
   "Chapters/acknowledgement.tex" 1721527871 43 cc78276aa82805d38f662a5199627ef9 ""
   "Chapters/blank_text.tex" 1721528209 74 125ab8b50d459856c7107fb6d1375be4 ""
-  "Chapters/introduction.tex" 1721528122 97 d6790211c073d0f971e565e1e9e8a556 ""
-  "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" 1721528181 1510 450a52e3587eab6d8cf60d0dcd7855f9 ""
+  "Chapters/introduction.tex" 1721940877 357 453a5cd1a66b6fab49041791118ab55c ""
+  "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" 1721941342 1608 0ca0a504179447159b1b8ae2bc6b28da ""
   "elsarticle.cls" 1721513831 45320 6a09c4ebaa5b931b22a08adb773e6074 ""
-  "main.aux" 1721528211 712 1a6ea4cd3de9dc3fcdfdfb7b3c12dd1b "pdflatex"
-  "main.bbl" 1721528146 1333 eaa3bf992234390365c0a4b38b6e0c60 "bibtex main"
-  "main.spl" 1721528211 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1721528181 1510 450a52e3587eab6d8cf60d0dcd7855f9 ""
+  "main.aux" 1721941345 943 a0b39f17235aec1215c239006b077c62 "pdflatex"
+  "main.bbl" 1721941345 1333 eaa3bf992234390365c0a4b38b6e0c60 "bibtex main"
+  "main.spl" 1721941345 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1721941342 1608 0ca0a504179447159b1b8ae2bc6b28da ""
   (generated)
   "main.aux"
   "main.log"
