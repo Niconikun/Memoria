@@ -1,6 +1,8 @@
 %% in this section we will add the actual text for it to write and edit.
 \section{CubeSat Reliability Model}
-CubeSat reliability literature suggests increasing testing time (Faure et al.  2017) instead of subsystems redundancy to improve reliability (BOUWMEESTER; MENICUCCI; GILL, 2022b). Recognizing the value of increased testing considering the launch costs and the satellite costs, the approach followed in this implementation is to periodically deploy “new” satellites in orbit to keep the distributed system reliability above the required threshold. By replenishing the cluster regularly, through a certain deployment strategy, one can assess the number of satellites required over time to fulfil the requirements (even at lower individual element reliability). This is further developed in the next pages.
+
+CubeSat reliability literature suggests increasing testing time (Faure et al. 2017) instead of subsystems redundancy to improve reliability (Bouwmeester, Menicucci, Gill, 2022b).
+Recognizing the value of increased testing considering the launch costs and the satellite costs, the approach followed in this implementation is to periodically deploy “new” satellites in orbit to keep the distributed system reliability above the required threshold. By replenishing the cluster regularly, through a certain deployment strategy, one can assess the number of satellites required over time to fulfil the requirements (even at lower individual element reliability). This is further developed in the next pages.
 We use the reliability of a CubeSat over time fit by Bouwmeester et al (2022), as the team at Delft University of Technology has been publishing a series of analysis on CubeSat and small satellite reliability and the latter article presents one of the few applicable models to CubeSats (which are the scope of this research). The article establishes that the Lognormal-Gompertz was the most adequate fit to the existing data at CubeSat level, while at subsystem level the Bayesian interference. Thus, the algorithm implements this as the reliability function over time. Both are shown in Figure 5 34.
 
 %% insert figure here
@@ -17,7 +19,7 @@ At the same time the model of the reliability obtained by the authors correspond
 
 \[R_{subsys}\left(t\right)=\ e^{-\eta\left(e^\frac{t}{\theta}-1\right)\ }\ \frac{1}{\sigma\sqrt{2\pi}}\int_{0}^{t}\frac{2}{x}e^{-\frac{{(\ln{x}-\mu)}^2\ }{4\sigma^2}}dx\]
 
-Where \(\theta,\eta, \sigma, \mu\) are variables that determines the curve for each subsystem, see equivalences in Table 5 14, and values determined by Bouwmeester et al. (2022b) presented in Table 5 15. Note, the Thermal Subsystem and Propulsion Subsystem are missing in the database because either these subsystems are typically passive in CubeSats, embedded in other subsystems or not typically applied in this framework. The electrical interfaces between subsystems are also allocated to the major subsystems (e.g. data interfaces to CDHS, power distribution to EPS). Guidance, Navigation and Control was allocated inside the Attitude, Determination and Control Subsystem since they commonly share the same instruments (Star tracker for instance).
+Where \(\theta,\eta, \sigma, \mu\) are variables that determines the curve for each subsystem, see equivalences in Table 5 14, and values determined by Bouwmeester et al. (2022b) presented in Table 5 15. Note, the Thermal Subsystem and Propulsion Subsystem are missing in the database because either these subsystems are typically passive in CubeSats, embedded in other subsystems or not typically applied in this framework. The electrical interfaces between subsystems are also allocated to the major subsystems (e.g.\ data interfaces to CDHS, power distribution to EPS). Guidance, Navigation and Control was allocated inside the Attitude, Determination and Control Subsystem since they commonly share the same instruments (Star tracker for instance).
 
 %% insert table
 
@@ -29,7 +31,7 @@ The reliability for an element can be increased through testing and/or redundanc
 
 \subsection{Redundancy}
 
-Literature suggests that the power subsystems in the one with the lowest reliability (BOUWMEESTER; LANGER; GILL, 2017b, 2017c; GUO; MONAS; GILL, 2014a), and a failure in it will be catastrophic as the mission cannot operate without energy. The extreme reliability improvement would be to fly a completely redundant power subsystem, as schematically described in Figure 5 36. This was implemented in the model as an option (based on the approach by (QAISAR; RYAN; TUTTLE, 2016)) who explore the effect on the systems engineering envelopes (cost, volume, mass) for a set of different components and its combinations. 
+Literature suggests that the power subsystems in the one with the lowest reliability (BOUWMEESTER, LANGER, GILL, 2017b, 2017c; GUO, MONAS, GILL, 2014a), and a failure in it will be catastrophic as the mission cannot operate without energy. The extreme reliability improvement would be to fly a completely redundant power subsystem, as schematically described in Figure 5 36. This was implemented in the model as an option (based on the approach by (QAISAR, RYAN, TUTTLE, 2016)) who explore the effect on the systems engineering envelopes (cost, volume, mass) for a set of different components and its combinations. 
 Even though, based on the developer interviews, reliability at component level is present. In the case of a CubeSat a “spare” EPS will result in an increase in mass and cost and decreased in available payload volume. The rational for implementing this subsystem level redundancy, was the availability of data at this level (as data for lower levels was not available). Thus, this approach is adequate for modelling at lower level, yet here only for quantifying effects of power subsystem (EPS) redundancy over satellite reliability and systems engineering envelopes. Redundancy of subsystem is no longer assess in the test case.
 
 %% insert figure
@@ -65,7 +67,12 @@ The scenarios inputs are summarized in Table 5 16. Then the algorithm is run and
 
 %%insert table
 
-%% insert figure
+\begin{figure}
+	\centering 
+	\includegraphics[width=0.4\textwidth]{Images/Figure 5-38.png}	
+	\caption{Results in Physics Journal cover} 
+	\label{fig_mom0}
+\end{figure}
 
 Reliability every 6 months is show in Table 5 17, where all the scenarios except 3 and 5, have a reliability above the required 0.90 all the time. Scenario 5 does not deploy new satellites, and the retirement at the end of year 3 drops reliability to 0 as no satellite is considered operational.
 

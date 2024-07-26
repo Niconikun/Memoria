@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1722009121.31378 "main.aux" "main.bbl" "main" 1722009125.66525 0
+["bibtex main"] 1722012296.4205 "main.aux" "main.bbl" "main" 1722014860.20333 0
   "./elsarticle-harv.bst" 1721506812 30002 58b59416722968003776982d370174f4 ""
   "./references.bib" 1721528059 947 49bec6699b1fd00f7972de359e86dfb7 ""
-  "main.aux" 1722009123 1936 54d9faf7eb5787e9fcca4374e7a3986a "pdflatex"
+  "main.aux" 1722014859 2710 34ad9953fed6e222a8be357ecef6bed4 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1722009122.17552 "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" "main.pdf" "main" 1722009125.66715 0
+["pdflatex"] 1722014858.53002 "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" "main.pdf" "main" 1722014860.20433 0
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1721527078 83335 c32053a268bc5f3a5633d05b0c9e39f8 ""
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1000.pk" 1721517376 25420 98046596910d72c7368d144b9599da04 ""
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecrm0600.pk" 1721522507 14880 4044279cd31688e5f1b2c295c41f9fa7 ""
@@ -81,17 +81,20 @@
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/tex/latex/lipsum/lipsum.sty" 1633253722 14690 c2c754218a7108db7823a4839c1bc3cd ""
   "C:/Users/nicos/AppData/Local/Programs/MiKTeX/tex/latex/natbib/natbib.sty" 1292249081 46712 1c8843383c0bd05870c45fa0ebea6cc2 ""
   "Chapters/Conclusion.tex" 1721941171 213 38511ed1d663e2a270833a4ee8820b00 ""
-  "Chapters/Results and Discussions.tex" 1722009116 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "Chapters/Results and Discussions.tex" 1722010189 3700 5313b9b2548337666e729b7a489b62f0 ""
   "Chapters/abstract.tex" 1721526135 28 81e0d6ad5c2b0caaa6742192695822c1 ""
   "Chapters/acknowledgement.tex" 1721527871 43 cc78276aa82805d38f662a5199627ef9 ""
-  "Chapters/blank_text.tex" 1722008597 10036 3723d17301c93700453294f9cee68570 ""
-  "Chapters/introduction.tex" 1722006305 4750 019cac34623f16f0dcb2ac8b4a23ab7b ""
-  "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" 1721941342 1608 0ca0a504179447159b1b8ae2bc6b28da ""
+  "Chapters/blank_text.tex" 1722014857 10195 3406802efec819608b029cd4172c88e4 ""
+  "Chapters/introduction.tex" 1722012404 5064 dd767d861e3c316c94c775faf592b8d9 ""
+  "Images/Figure 5-30.png" 1718121634 40336 a2862f8d61d25e9d149355eae2658a76 ""
+  "Images/Figure 5-31.png" 1718121648 33222 db0bb0826403269549c583a5b52f693a ""
+  "Images/Figure 5-38.png" 1718121835 48076 c5ddb11c78894ea1a79da49cb924e3dd ""
+  "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" 1722011659 1621 dfeb3afde8d364146d283d5df54bf689 ""
   "elsarticle.cls" 1721513831 45320 6a09c4ebaa5b931b22a08adb773e6074 ""
-  "main.aux" 1722009123 1936 54d9faf7eb5787e9fcca4374e7a3986a "pdflatex"
-  "main.bbl" 1722009121 1333 eaa3bf992234390365c0a4b38b6e0c60 "bibtex main"
-  "main.spl" 1722009123 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "main.tex" 1721941342 1608 0ca0a504179447159b1b8ae2bc6b28da ""
+  "main.aux" 1722014859 2710 34ad9953fed6e222a8be357ecef6bed4 "pdflatex"
+  "main.bbl" 1722012296 1333 eaa3bf992234390365c0a4b38b6e0c60 "bibtex main"
+  "main.spl" 1722014858 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.tex" 1722011659 1621 dfeb3afde8d364146d283d5df54bf689 ""
   (generated)
   "main.aux"
   "main.log"

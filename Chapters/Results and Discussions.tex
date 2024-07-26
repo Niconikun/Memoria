@@ -1,0 +1,28 @@
+\section{Results and Discussions}
+
+The main results of this algorithm, for the purposes of analysis is the number of spacecrafts that are active over time (considering the retirement), see Table 5 18. Our mission requires to have 8 satellites operating to accomplish the temporal resolution required.
+
+%% insert table
+
+The effect of the rideshare program in the overall costs is significant. Particularly for deployments of eight 3U CubeSats (where the cost “saving” are 900 kUSD). This is the case for the initial generation of all scenarios but 3 and 4. One should keep in mind the lead times for Space-X launches are longer (24 months) while POD launches can be achieved in a 6-month windows (this is a relevant reason, ability to react to developments) that brokered launchers offer at the time when one can use the “next available ride”.
+
+Satellites are still estimated to be more expensive than the launch, as so the number of satellites need to be minimized to keep the entire mission within budget. A relevant aspect of the deployment strategy has to do with matching the manufacturing capabilities with the launch. Based on discussions with developers, surveys, and cost modelling manpower is a cost driver and effort to balance the workload is key for a feasible project.
+
+\subsection{Study Case results}
+
+After extensive analysis of different combinations of satellite deployments and orbital altitude, the proposed mission shall be deployed at an SSO orbit at the highest altitude compliant to debris mitigation guidelines. For our scenarios this was set at 600 km. 
+A minimum of 8 satellites are to be operational to fulfil the temporal resolution requirement, which proved to be the mission driver (as the spatial resolution was feasible within a 3U CubeSat).
+
+Several deployment scenarios where analysed (see Table 5 18). The minimum number of CubeSats required to fulfil the mission always with 8 operational satellites is 24. Yet scenario 6, with a new batch of 4 satellites every 6 months starting at month 36 (and an initial batch of 8) was able to reduce the total number of CubeSats to 20 (with some periods where there are less than 8 satellites due to retirement).
+
+Taking the values of Table 5 19, and comparing with respect to the requirements in Table 5 1, which state in req. 34.13 cost to be non-recurring < 10 M USD and recurring < 3 M USD / year, one can rephrase this requirement in terms of total budget 
+
+\[10\left[MUSD\right]+8\left[yrs\right]\times3\left[\frac{MUSD}{yr}\right]=34[MUSD]\]
+
+Or, if the project lifetime is interpreted as the operational lifetime of the satellites 8 years, plus the time for the development of maximum 3 years, thus 11 years.
+
+\[10 \left[ MUSD \right] + 11 \left[ yrs\right] \times 3\left[ \frac{MUSD}{yr} \right] = 43 [MUSD]\]
+
+The proposed architecture is within the order of magnitude. Of course, a discussion with the stakeholders regarding the recurrent costs (here just estimated) should be done early in the mission to understand the upper bounds. Cost replicability effects and learning curves become a relevant aspect when considering a 20-24 satellite cluster (as are economies of scale when procuring the COTS components or subsystems).
+Many of the make or buy decisions will depend on the manpower cost alternative, which is both country dependant and technology capability (as some countries might have cheaper labour, but unqualified to develop)
+Note the case for FireSat II in Friedenthal and Oster, which sets a spacecraft of 150 kg and four spacecraft over two different planes. The estimated cost for such a launch is 1.5 million USD per spacecraft (SPACEFLIGHT INDUSTRIES, 2022a).

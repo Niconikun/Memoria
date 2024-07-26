@@ -110,9 +110,30 @@ INPUT .\Chapters\introduction.tex
 INPUT Chapters\introduction.tex
 OUTPUT main.pdf
 INPUT C:\Users\nicos\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+INPUT .\Images\Figure 5-30.png
+INPUT .\Images\Figure 5-30.png
+INPUT .\Images\Figure 5-30.png
+INPUT .\Images\Figure 5-30.png
+INPUT .\Images\Figure 5-30.png
+INPUT .\Images\Figure 5-30.png
+INPUT .\Images\Figure 5-30.png
+INPUT .\Images\Figure 5-31.png
+INPUT .\Images\Figure 5-31.png
+INPUT .\Images\Figure 5-31.png
+INPUT .\Images\Figure 5-31.png
+INPUT .\Images\Figure 5-31.png
+INPUT .\Images\Figure 5-31.png
+INPUT .\Images\Figure 5-31.png
 INPUT .\Chapters\blank_text.tex
 INPUT .\Chapters\blank_text.tex
 INPUT Chapters\blank_text.tex
+INPUT .\Images\Figure 5-38.png
+INPUT .\Images\Figure 5-38.png
+INPUT .\Images\Figure 5-38.png
+INPUT .\Images\Figure 5-38.png
+INPUT .\Images\Figure 5-38.png
+INPUT .\Images\Figure 5-38.png
+INPUT .\Images\Figure 5-38.png
 INPUT .\Chapters\Results and Discussions.tex
 INPUT .\Chapters\Results and Discussions.tex
 INPUT Chapters\Results and Discussions.tex
