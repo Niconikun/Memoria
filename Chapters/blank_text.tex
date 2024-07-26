@@ -1,1 +1,89 @@
 %% in this section we will add the actual text for it to write and edit.
+\section{CubeSat Reliability Model}
+CubeSat reliability literature suggests increasing testing time (Faure et al.  2017) instead of subsystems redundancy to improve reliability (BOUWMEESTER; MENICUCCI; GILL, 2022b). Recognizing the value of increased testing considering the launch costs and the satellite costs, the approach followed in this implementation is to periodically deploy “new” satellites in orbit to keep the distributed system reliability above the required threshold. By replenishing the cluster regularly, through a certain deployment strategy, one can assess the number of satellites required over time to fulfil the requirements (even at lower individual element reliability). This is further developed in the next pages.
+We use the reliability of a CubeSat over time fit by Bouwmeester et al (2022), as the team at Delft University of Technology has been publishing a series of analysis on CubeSat and small satellite reliability and the latter article presents one of the few applicable models to CubeSats (which are the scope of this research). The article establishes that the Lognormal-Gompertz was the most adequate fit to the existing data at CubeSat level, while at subsystem level the Bayesian interference. Thus, the algorithm implements this as the reliability function over time. Both are shown in Figure 5 34.
+
+%% insert figure here
+
+The relationship for the subsystems of a CubeSat in series is defined in Eq. 5 9, where \(R_{sys}\)  represents the reliability of the CubeSat and \(R_{subsys,i}\) represents the reliability of each subsystem in series.
+
+\[R_{sat}\left(t\right)=\prod_{i=1}^{n}{R_{subsys,i}(t)}\]
+
+An example of the sequence of subsystems in series is presented in Figure 5 35.
+
+%% insert figure here
+
+At the same time the model of the reliability obtained by the authors corresponds to a Lognormal-Gompertz product mixture, shown in Eq. 5 10.
+
+\[R_{subsys}\left(t\right)=\ e^{-\eta\left(e^\frac{t}{\theta}-1\right)\ }\ \frac{1}{\sigma\sqrt{2\pi}}\int_{0}^{t}\frac{2}{x}e^{-\frac{{(\ln{x}-\mu)}^2\ }{4\sigma^2}}dx\]
+
+Where \(\theta,\eta, \sigma, \mu\) are variables that determines the curve for each subsystem, see equivalences in Table 5 14, and values determined by Bouwmeester et al. (2022b) presented in Table 5 15. Note, the Thermal Subsystem and Propulsion Subsystem are missing in the database because either these subsystems are typically passive in CubeSats, embedded in other subsystems or not typically applied in this framework. The electrical interfaces between subsystems are also allocated to the major subsystems (e.g. data interfaces to CDHS, power distribution to EPS). Guidance, Navigation and Control was allocated inside the Attitude, Determination and Control Subsystem since they commonly share the same instruments (Star tracker for instance).
+
+%% insert table
+
+\section{Mitigation Approaches}
+
+The reliability for an element can be increased through testing and/or redundancy. At the DSM level it can be increased also by:
+- increasing its constituent element’s individual reliability through subsystem redundancy.
+- Phased deployment of “new” satellites
+
+\subsection{Redundancy}
+
+Literature suggests that the power subsystems in the one with the lowest reliability (BOUWMEESTER; LANGER; GILL, 2017b, 2017c; GUO; MONAS; GILL, 2014a), and a failure in it will be catastrophic as the mission cannot operate without energy. The extreme reliability improvement would be to fly a completely redundant power subsystem, as schematically described in Figure 5 36. This was implemented in the model as an option (based on the approach by (QAISAR; RYAN; TUTTLE, 2016)) who explore the effect on the systems engineering envelopes (cost, volume, mass) for a set of different components and its combinations. 
+Even though, based on the developer interviews, reliability at component level is present. In the case of a CubeSat a “spare” EPS will result in an increase in mass and cost and decreased in available payload volume. The rational for implementing this subsystem level redundancy, was the availability of data at this level (as data for lower levels was not available). Thus, this approach is adequate for modelling at lower level, yet here only for quantifying effects of power subsystem (EPS) redundancy over satellite reliability and systems engineering envelopes. Redundancy of subsystem is no longer assess in the test case.
+
+%% insert figure
+
+\subsection{Phase deployment}
+
+The approach proposed in this work (a heuristic) is to accept a “lower” element reliability, to compensate this by deploying a cluster at the same time (obtaining the required reliability though the treatment of DSM reliability as that of parallel individual elements (i.e. CubeSats)). And to maintain the set reliability deploy new spacecraft, with initial reliability higher than those already in orbit in a manner that minimizes the launch cost and number of satellites in total. This was implemented through a:
+Phase-deployment, variable which enables the replenishment of satellites over the mission lifetime.
+Relaunch-rate: as the number of months between the launches of new satellites. Care must be taken as this number is constrained by the lead times in the integration to a launch vehicle which depends on several aspects. For practical purposes a minimum of 6 months was considering, considering discussions with launch brokers and cubesat developers.
+DSM-relaunch-amount: number of new satellites in the new batch.
+
+The reliability as a function of time, over a period T for single satellite generations is schematically represented in 
+Figure 5 37. In this figure the element initially deployed will exhibit the lowest reliability, but the new ones with higher reliability and the assessment at DSM level will yield a higher value. The goal is to have a scenario that full fills the reliability requirements to assess the total number of satellites, and the deployment cost early in de conceptual phase.
+
+%%insert figure here
+
+The previous approach describes the case where only one element is deployed per batch. In the case where more than one element is deployed per batch, which actually allows to fulfil the required reliability of 0.9 of the case study example, the reliability of the system with parallel elements is given by Eq. 5 11, where \(R_{sat}\) represents the reliability of each CubeSat in the DSM and \(R_{DSM}\) the reliability of the distributed system. The more active parallel elements are present, the more chances the system will survive over time.
+
+\[R_{DSM}\left(t\right)=\ 1-\prod_{i}^{n}{(1-R_{sat,i}(t))}\]
+
+\subsection{Programmed Retirement}
+
+Based on the discussion with New Space developers, and the declared lifetime of Planet satellites (Obtained from the Satellite database (UCS, 2021)), it is assumed that the CubeSats are retired after 3 years (Note for the case of ISS deployments, this might be lower as they can burn in re-entry due to atmospheric drag). This is implemented in the code as Retire-sat with True activating the state and False leaving the reliability to propagate over time. Again, a note of caution, as the reliability fits by Bouwmeester et al. can be misinterpreted as a continuum, yet experience show the CubeSats lifetime it not reaching 10 years in practice.
+
+\[R_{sat,i}\left(t\right)=\left\{\begin{matrix}
+    0<t\leq 3\rightarrow R_{sat,i}=R_{sat,i}\\ 
+    t>3\rightarrow R_{sat,i}=0
+    \end{matrix}\right. [-]\]
+
+\subsection{Initial Output}
+
+The scenarios inputs are summarized in Table 5 16. Then the algorithm is run and it produces a series of results in terms of graphs and tables presented below. These include: the scenario description, the launch cost, reliability at different points in time (which is also shown graphically see Figure 5 38).
+
+%%insert table
+
+%% insert figure
+
+Reliability every 6 months is show in Table 5 17, where all the scenarios except 3 and 5, have a reliability above the required 0.90 all the time. Scenario 5 does not deploy new satellites, and the retirement at the end of year 3 drops reliability to 0 as no satellite is considered operational.
+
+The deployment strategy and reliability are assessed in a Python algorithm which also provides the total number of satellites and launch cost. 
+
+\section{Launch Cost Estimations}
+
+For each deployment of satellites, the cost of launch is estimated in three ways:
+	Using only POD launchers through brokers at a cost of 150 [kUSD] for a 3 U to SSO. Being the total cost in this case the total number of satellites deployed times the cost for a brokered 3U launch.
+	Using Space-X rideshare program at 300 kUSD for 50 kg to orbit, see Figure 5 41, makes sense from a cost perspective at least at two 3U (plus deployer POD). 
+	Using a combination of both, where the initial batch can be deployed by Space-X while the newer smaller batches (generations) used PODs. The latter due to the lower lead time for launch.
+	If one takes the weight of a 3U cubesat  by ISIS to be between 4 and 6 kg, and ISIS Quadpack deployer, capable of deploying four 3U or different configurations for a maximum of a 12 U (see Figure 5 40) with a mass between 6 and 7.5 kg one could fit up to eight triple unit CubeSats in one 50 kg launch (at the cost of two in pods, or even a bit more if one has some extra kilograms). 
+	This would represent a significant cost reduction in the order of \(6\times150\left[kUSD\right]=900[kUSD]\). 
+	Thus, based on the case study analysis the proposal for the combination is that the initial batch of satellites (i.e. the ones required to fulfil the coverage and temporal resolution of the mission are deployed in a Rideshare launch). 
+
+Thus, cost is given as the total launch cost \(C_{launch,\ total}\) is given by the sum of the costs of each i-th generation in Eq. 5 12.
+
+\[C_{launch,total}=\sum_{i}C_{launch,i}\]
+
+%% insert figure
+
