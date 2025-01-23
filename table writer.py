@@ -2,6 +2,48 @@ import requests
 import pandas as pd
 from bs4 import BeautifulSoup
 from openpyxl import Workbook
+from itertools import cycle
+from shutil import get_terminal_size
+from threading import Thread
+from time import sleep
+
+class Loader:
+    def __init__(self, desc="Loading...", end="Done!", timeout=0.1):
+        
+        """ A loader-like context manager Args: 
+        desc (str, optional): The loader's description. Defaults to "Loading...".
+        end (str, optional): Final print. Defaults to "Done!".
+        timeout (float, optional): Sleep time between prints. Defaults to 0.1. """
+
+        self.desc = desc
+        self.end = end
+        self.timeout = timeout
+        self._thread = Thread(target=self._animate, daemon=True)
+        self.steps = ["⢿", "⣻", "⣽", "⣾", "⣷", "⣯", "⣟", "⡿"]
+        self.done = False
+    
+    def start(self):
+        self._thread.start()
+        return self
+
+    def _animate(self):
+        for c in cycle(self.steps):
+            if self.done:
+                break
+            print(f"\r{self.desc} {c}", flush=True, end="")
+            sleep(self.timeout)
+    
+    def __enter__(self):
+        self.start()
+    
+    def stop(self):
+        self.done = True
+        cols = get_terminal_size((80, 20)).columns
+        print("\r" + " " * cols, end="", flush=True)
+        print(f"\r{self.end}", flush=True)
+        
+    def __exit__(self, exc_type, exc_value, tb): # handle exceptions with those variables ^
+        self.stop()
 
 
 def save_to_excel(data, filename):
@@ -15,6 +57,11 @@ def save_to_excel(data, filename):
 
 
 if __name__ == '__main__':
+    
+    with Loader("Program started. Executing..."):
+        for i in range(10):
+            sleep(0.25)
+    
     base_url = 'https://www.nanosats.eu/database'
     response = requests.get(base_url)
     html = response.text
@@ -26,12 +73,14 @@ if __name__ == '__main__':
 
     links_filtered = [ x for x in links if '.html' in x ]
     links_filtered = [ x for x in links_filtered if 'https://' not in x ]
-    links_filtered = links_filtered[0:10]
+    print(len(links_filtered))
+    links_filtered = links_filtered[0:1000]
     print(links_filtered)
     #print(links_filtered)
     dict = {'Spacecraft name': [], 'Spacecraft': [], 'Name': [], 'Launcher': [], 'Organisation': [], 'Institution': [], 'Entity type': [], 'Entity': [], 'Manufacturer': []}
     counter = 0
     for sat_link in links_filtered:
+        loader = Loader(desc='Retrieving data from: ' + 'https://www.nanosats.eu/' + sat_link, end='Done!' + str(counter) + ' out of ' + str(len(links_filtered)) + ' left.').start()
         base_url = 'https://www.nanosats.eu/' + sat_link
         response_sat = requests.get(base_url)
         html_sat = response_sat.text
@@ -60,7 +109,8 @@ if __name__ == '__main__':
                 #print(dict)
                 #print()
         #print(counter)
-        #counter +=1
+        counter +=1
+        loader.stop()
         
         
     table_to_excel = pd.DataFrame(dict).to_excel("output.xlsx")
