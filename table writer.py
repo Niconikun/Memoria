@@ -46,16 +46,6 @@ class Loader:
         self.stop()
 
 
-def save_to_excel(data, filename):
-    # Function to save extracted data to an Excel file
-    wb = Workbook()
-    ws = wb.active
-    ws.append(["Satellite name", "Organisation", "Institution", "Entity type", "Manufacturer", "Operator"])  # Header row
-    for item in data:
-        ws.append(item)
-    wb.save(filename)
-
-
 if __name__ == '__main__':
     
     with Loader("Program started. Executing..."):
@@ -74,13 +64,13 @@ if __name__ == '__main__':
     links_filtered = [ x for x in links if '.html' in x ]
     links_filtered = [ x for x in links_filtered if 'https://' not in x ]
     print(len(links_filtered))
-    links_filtered = links_filtered[0:1000]
-    print(links_filtered)
+    links_filtered = links_filtered[1032:1250]
+    #print(links_filtered)
     #print(links_filtered)
     dict = {'Spacecraft name': [], 'Spacecraft': [], 'Name': [], 'Launcher': [], 'Organisation': [], 'Institution': [], 'Entity type': [], 'Entity': [], 'Manufacturer': []}
-    counter = 0
+    counter = 1
     for sat_link in links_filtered:
-        loader = Loader(desc='Retrieving data from: ' + 'https://www.nanosats.eu/' + sat_link, end='Done!' + str(counter) + ' out of ' + str(len(links_filtered)) + ' left.').start()
+        loader = Loader(desc='Retrieving data from: ' + 'https://www.nanosats.eu/' + sat_link, end='Done! ' + str(counter) + ' out of ' + str(len(links_filtered)) + ' left.').start()
         base_url = 'https://www.nanosats.eu/' + sat_link
         response_sat = requests.get(base_url)
         html_sat = response_sat.text
