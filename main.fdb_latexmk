@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex main"] 1722023249.80358 "main.aux" "main.bbl" "main" 1722023673.10309 0
+["bibtex main"] 1722023249.80358 "main.aux" "main.bbl" "main" 1760354517.864 0
   "./elsarticle-harv.bst" 1721506812 30002 58b59416722968003776982d370174f4 ""
   "./references.bib" 1721528059 947 49bec6699b1fd00f7972de359e86dfb7 ""
-  "main.aux" 1722023670 2710 2d4d4f1e4c4e5fcca670daf98d2adddf "pdflatex"
+  "main.aux" 1760354515 2710 2d4d4f1e4c4e5fcca670daf98d2adddf "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1722023669.94366 "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" "main.pdf" "main" 1722023673.10381 0
+["pdflatex"] 1760354509.75064 "d:/Documents/GitHub/Memoria/main.tex" "main.pdf" "main" 1760354517.86558 0
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1721527078 83335 c32053a268bc5f3a5633d05b0c9e39f8 ""
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1000.pk" 1721517376 25420 98046596910d72c7368d144b9599da04 ""
   "C:/Users/nicos/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecrm0600.pk" 1721522507 14880 4044279cd31688e5f1b2c295c41f9fa7 ""
@@ -89,11 +89,11 @@
   "Images/Figure 5-30.png" 1718121634 40336 a2862f8d61d25e9d149355eae2658a76 ""
   "Images/Figure 5-31.png" 1718121648 33222 db0bb0826403269549c583a5b52f693a ""
   "Images/Figure 5-38.png" 1718121835 48076 c5ddb11c78894ea1a79da49cb924e3dd ""
-  "c:/Users/nicos/OneDrive - Universidad de Concepción/Documents/GitHub/Memoria/main.tex" 1722011659 1621 dfeb3afde8d364146d283d5df54bf689 ""
+  "d:/Documents/GitHub/Memoria/main.tex" 1722011659 1621 dfeb3afde8d364146d283d5df54bf689 ""
   "elsarticle.cls" 1721513831 45320 6a09c4ebaa5b931b22a08adb773e6074 ""
-  "main.aux" 1722023670 2710 2d4d4f1e4c4e5fcca670daf98d2adddf "pdflatex"
+  "main.aux" 1760354515 2710 2d4d4f1e4c4e5fcca670daf98d2adddf "pdflatex"
   "main.bbl" 1722023250 1333 eaa3bf992234390365c0a4b38b6e0c60 "bibtex main"
-  "main.spl" 1722023670 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "main.spl" 1760354512 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "main.tex" 1722011659 1621 dfeb3afde8d364146d283d5df54bf689 ""
   (generated)
   "main.aux"

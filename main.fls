@@ -1,6 +1,6 @@
-PWD c:\Users\nicos\OneDrive - Universidad de Concepción\Documents\GitHub\Memoria
+PWD d:\Documents\GitHub\Memoria
 INPUT C:\Users\nicos\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\nicos\OneDrive - Universidad de Concepción\Documents\GitHub\Memoria\main.tex
+INPUT d:\Documents\GitHub\Memoria\main.tex
 OUTPUT main.log
 INPUT .\elsarticle.cls
 INPUT elsarticle.cls
